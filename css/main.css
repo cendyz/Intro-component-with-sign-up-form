@@ -148,10 +148,17 @@ body {
 }
 
 @media (min-width: 1200px) {
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -moz-column-gap: 5em;
+         column-gap: 5em;
+  }
   .main {
     padding: 0 2em;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     place-items: center;
   }
   .main__top {

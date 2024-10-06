@@ -115,10 +115,18 @@ body {
 }
 
 @media (min-width: 1200px) {
+
+	.container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		column-gap: 5em;
+	}
+
 	.main {
 		padding: 0 2em;
 		display: grid;
-		grid-template-columns: 1fr 1fr;
+		grid-template-columns: 1fr;
 		place-items: center;
 
 		&__top {
@@ -159,10 +167,3 @@ body {
 		}
 	}
 }
-
-// - Mobile: 375px
-// - Desktop: 1440px
-
-// > 💡 These are just the design sizes. Ensure content is responsive and meets WCAG requirements by testing the full range of screen sizes from 320px to large screens.
-
-// - Weights: 400, 500, 600, 700
