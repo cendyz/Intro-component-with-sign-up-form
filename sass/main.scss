@@ -84,9 +84,19 @@ body {
 				&-img {
 					display: none;
 					position: absolute;
-					top: 50%;
+					top: 35%;
 					right: 1.5em;
 					transform: translateY(-50%);
+				}
+
+				&-error {
+					display: none;
+					margin-top: 0.3em;
+					margin-right: 0.3em;
+					text-align: right;
+					font-size: 1.2rem;
+					font-style: italic;
+					color: var(--red);
 				}
 			}
 			&-btn {
@@ -160,7 +170,6 @@ body {
 					}
 
 					&-img {
-						top: 35%;
 						right: 2em;
 					}
 				}

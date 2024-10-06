@@ -122,9 +122,18 @@ body {
 .main__bottom-form-box-img {
   display: none;
   position: absolute;
-  top: 50%;
+  top: 35%;
   right: 1.5em;
   transform: translateY(-50%);
+}
+.main__bottom-form-box-error {
+  display: none;
+  margin-top: 0.3em;
+  margin-right: 0.3em;
+  text-align: right;
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--red);
 }
 .main__bottom-form-btn {
   display: block;
@@ -190,7 +199,6 @@ body {
     color: var(--red);
   }
   .main__bottom-form-box-img {
-    top: 35%;
     right: 2em;
   }
 }/*# sourceMappingURL=main.css.map */
