@@ -8,11 +8,6 @@ const errorText = document.querySelectorAll(".main__bottom-form-box-error");
 const btn = document.querySelector(".main__bottom-form-btn");
 const email = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;
 
-const iconsTable = [...errorIcon];
-const errorTable = [...errorText];
-iconsTable.splice(2, 1);
-errorTable.splice(2, 1);
-
 const checkNames = (input, icon, error) => {
 	input.forEach((el, index) => {
 		if (el.value === "") {
@@ -77,7 +72,7 @@ const checkError = () => {
 
 btn.addEventListener("click", () => {
 	event.preventDefault();
-	checkNames([nameInput, surnameInput], iconsTable, errorTable);
+	checkNames([nameInput, surnameInput], errorIcon, errorText);
 	checkEmail(emailInput);
 	checkPass(passInput);
 	checkError();
