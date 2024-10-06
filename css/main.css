@@ -61,6 +61,7 @@ body {
   padding: 5em 1em;
   background: url("../img/bg-intro-mobile.png");
   background-color: var(--red);
+  background-size: auto;
   text-align: center;
 }
 .main__top {
@@ -136,6 +137,7 @@ body {
   color: var(--white);
   font-size: 1.5rem;
   letter-spacing: 1px;
+  text-shadow: 1px 1px 6px rgb(66, 68, 90);
 }
 .main__bottom-form-text {
   padding: 0 2.4em;
