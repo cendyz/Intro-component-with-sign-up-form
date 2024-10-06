@@ -20,9 +20,8 @@ body {
 
 .main {
 	padding: 5em 1em;
-	background: url("../img/bg-intro-mobile.png");
+	background-image: url("../img/bg-intro-mobile.png");
 	background-color: var(--red);
-	background-size: auto;
 	text-align: center;
 
 	&__top {
@@ -139,6 +138,7 @@ body {
 		display: grid;
 		grid-template-columns: 1fr;
 		place-items: center;
+		background-image: url("../img/bg-intro-desktop.png");
 
 		&__top {
 			max-width: 30em;
