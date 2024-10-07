@@ -1,79 +1,41 @@
 const form = document.querySelector(".main__bottom-form");
-const nameInput = document.querySelector("#name");
-const surnameInput = document.querySelector("#surname");
-const emailInput = document.querySelector("#email");
-const passInput = document.querySelector("#pass");
+const inputs = document.querySelectorAll("#name, #surname, #email, #pass");
 const errorIcon = document.querySelectorAll(".main__bottom-form-box-img");
 const errorText = document.querySelectorAll(".main__bottom-form-box-error");
 const btn = document.querySelector(".main__bottom-form-btn");
-const email = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;
+const emailRegex = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;
 
-const checkNames = (input, icon, error) => {
-	input.forEach((el, index) => {
-		if (el.value === "") {
-			el.style.border = "1px solid #ff7a7a";
-			error[index].textContent = `${el.placeholder} cannot be empty`;
-			icon[index].style.display = "block";
-			error[index].style.display = "block";
-		} else {
-			el.style.border = "1px solid #b9b6d34d";
-			icon[index].style.display = "none";
-			error[index].style.display = "none";
-		}
-	});
+const setError = (input, index, message) => {
+	input.style.border = "1px solid #ff7a7a";
+	errorText[index].textContent = message;
+	errorIcon[index].style.display = "block";
+	errorText[index].style.display = "block";
 };
 
-const checkEmail = input => {
-	if (email.test(input.value)) {
-		input.style.border = "1px solid #b9b6d34d";
-		errorIcon[2].style.display = "none";
-		errorText[2].style.display = "none";
-	} else if (!email.test(input.value)) {
-		input.style.border = "1px solid #ff7a7a";
-		errorText[2].textContent = `Looks like this is not an email`;
-		errorIcon[2].style.display = "block";
-		errorText[2].style.display = "block";
-
-		if (input.value === "") {
-			errorText[2].textContent = `${input.placeholder} cannot be empty`;
-		}
-	}
+const clearError = (input, index) => {
+	input.style.border = "1px solid #b9b6d34d";
+	errorIcon[index].style.display = "none";
+	errorText[index].style.display = "none";
 };
 
-const checkPass = input => {
-	if (input.value.length < 6) {
-		input.style.border = "1px solid #ff7a7a";
-		errorText[3].textContent = `Password includes min. 6 characters`;
-		errorIcon[3].style.display = "block";
-		errorText[3].style.display = "block";
-
-		if (input.value === "") {
-			errorText[3].textContent = `${input.placeholder} cannot be empty`;
-		}
+const checkInput = (input, index) => {
+	if (input.value === "") {
+		setError(input, index, `${input.placeholder} cannot be empty`);
+	} else if (input.id === "email" && !emailRegex.test(input.value)) {
+		setError(input, index, "Looks like this is not an email");
+	} else if (input.id === "pass" && input.value.length < 6) {
+		setError(input, index, "Password includes min. 6 characters");
 	} else {
-		input.style.border = "1px solid #b9b6d34d";
-		errorIcon[3].style.display = "none";
-		errorText[3].style.display = "none";
+		clearError(input, index);
 	}
 };
 
 const checkError = () => {
-	let errorCount = 0;
-
-	errorText.forEach(err => {
-		if (err.style.display === "block") {
-			errorCount++;
-		}
-	});
-	if (errorCount === 0) {
-		form.submit();
-	}
+	return Array.from(errorText).every(err => err.style.display !== "block");
 };
 
-btn.addEventListener("click", () => {
+btn.addEventListener("click", event => {
 	event.preventDefault();
-	checkNames([nameInput, surnameInput], errorIcon, errorText);
-	checkEmail(emailInput);
-	checkPass(passInput);
-	checkError();
+	inputs.forEach((input, index) => checkInput(input, index));
+	if (checkError()) form.submit();
 });
